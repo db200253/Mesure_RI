@@ -1,6 +1,9 @@
 package Mesure_RI;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Locale;
 
 import org.graphstream.algorithm.Toolkit;
 import org.graphstream.graph.Graph;
@@ -31,6 +34,7 @@ public class Main {
       printUsefullDatas();
       System.out.println();
       printIfConnnected();
+      getDegreeDistribution();
       fs.removeSink(g);
     }
   }
@@ -62,5 +66,25 @@ public class Main {
       System.out.println("Le réseau est connexe");
     else 
       System.out.println("Le réseau n'est pas connexe");
+  }
+  
+  private static void getDegreeDistribution() {
+    
+    String outputFile = "src/main/ressources/degreeDistribution.csv";
+    
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile))) {
+
+      int[] degreeDistribution = Toolkit.degreeDistribution(g);
+
+      for (int i = 0; i < degreeDistribution.length; i++) {
+        
+        double normalizedValue = (double) degreeDistribution[i] / g.getNodeCount();
+        writer.write(i + "," + String.format(Locale.US, "%.8f", normalizedValue) + "\n");
+      }
+
+    } catch (IOException e) {
+      
+        e.printStackTrace();
+    }
   }
 }
