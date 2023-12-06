@@ -6,10 +6,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 import org.graphstream.algorithm.Toolkit;
+import org.graphstream.algorithm.generator.BarabasiAlbertGenerator;
+import org.graphstream.algorithm.generator.Generator;
+import org.graphstream.algorithm.generator.RandomGenerator;
 import org.graphstream.graph.BreadthFirstIterator;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.DefaultGraph;
+import org.graphstream.graph.implementations.SingleGraph;
 import org.graphstream.stream.file.FileSource;
 import org.graphstream.stream.file.FileSourceEdge;
 
@@ -33,11 +37,18 @@ public class Main {
       e.printStackTrace();
     } finally {
       
+      System.out.println("Graphe experimental : ");
       printUsefullDatas();
       System.out.println();
       printIfConnnected();
-      getDegreeDistribution();
-      getDistances();
+      getDegreeDistribution(g, "src/main/ressources/exp/degreeDistribution.csv");
+      getDistances(g, "src/main/ressources/exp/distanceDistribution.csv");
+      System.out.println("-----------------------------------------------");
+      System.out.println("Graphe random : ");
+      generateRg();
+      System.out.println("-----------------------------------------------");
+      System.out.println("Graphe Barabasi-albert : ");
+      generateBa();
       fs.removeSink(g);
     }
   }
@@ -74,9 +85,9 @@ public class Main {
   /**
    * Question 4 sur la distribution des degrés
    */
-  private static void getDegreeDistribution() {
+  private static void getDegreeDistribution(Graph g, String of) {
     
-    String outputFile = "src/main/ressources/degreeDistribution.csv";
+    String outputFile = of;
     
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile))) {
 
@@ -97,10 +108,10 @@ public class Main {
   /**
    * Question 5 sur la distribution des distances
    */
-  private static void getDistances() {
+  private static void getDistances(Graph g, String of) {
     
     float[] distances = new float[1000];
-    String outputFile = "src/main/ressources/distanceDistribution.csv";
+    String outputFile = of;
     float distMoy = 0;
     
     ArrayList<Node> echantillon = new ArrayList<Node>();
@@ -122,8 +133,11 @@ public class Main {
         
         for(int j = 0; j < 1000; ++j) {
           
-          bfs.next();
-          tmp += bfs.getDepthMax();
+          if(bfs.hasNext()) {
+            
+            bfs.next();
+            tmp += bfs.getDepthMax();
+          }
         }
         
         tmp /= 1000.0;
@@ -143,5 +157,74 @@ public class Main {
       
       e.printStackTrace();
     }
+  }
+  
+  private static void generateRg() {
+    
+    int numNodes = 317080;
+
+    Graph graph = new SingleGraph("Random Network");
+    Generator gen = new RandomGenerator(6.62208890914917);
+    
+    gen.addSink(graph);
+    gen.begin();
+    
+    for (int i = 0; i < numNodes; i++) {
+      
+        gen.nextEvents();
+    }
+    gen.end();
+    
+    int nbNodes = graph.getNodeCount();
+    int nbEdges = graph.getEdgeCount();
+    double avgDegree = Toolkit.averageDegree(graph);
+    double clusterCoef = Toolkit.averageClusteringCoefficient(graph);
+    
+    System.out.println("Nombre de noeuds dans le graphe : " + nbNodes);
+    System.out.println("Nombre de liens dans le graphe : " + nbEdges);
+    System.out.println("Degré moyen du graphe : " + avgDegree);
+    System.out.println("Coefficient de clustering moyen du graphe : " + clusterCoef);
+    if(Toolkit.isConnected(graph)) 
+      System.out.println("Le réseau est connexe");
+    else 
+      System.out.println("Le réseau n'est pas connexe");
+    
+    getDegreeDistribution(graph, "src/main/ressources/random/degreeDistribution.csv");
+    getDistances(graph, "src/main/ressources/random/distanceDistribution.csv");
+  }
+  
+  private static void generateBa() {
+    
+    int numNodes = 317080; 
+    int m = 6; 
+
+    Graph graph = new SingleGraph("Barabasi-Albert Network");
+    Generator gen = new BarabasiAlbertGenerator(m);
+    
+    gen.addSink(graph);
+    gen.begin();
+    
+    for (int i = 0; i < numNodes; i++) {
+      
+        gen.nextEvents();
+    }
+    gen.end();
+    
+    int nbNodes = graph.getNodeCount();
+    int nbEdges = graph.getEdgeCount();
+    double avgDegree = Toolkit.averageDegree(graph);
+    double clusterCoef = Toolkit.averageClusteringCoefficient(graph);
+    
+    System.out.println("Nombre de noeuds dans le graphe : " + nbNodes);
+    System.out.println("Nombre de liens dans le graphe : " + nbEdges);
+    System.out.println("Degré moyen du graphe : " + avgDegree);
+    System.out.println("Coefficient de clustering moyen du graphe : " + clusterCoef);
+    if(Toolkit.isConnected(graph)) 
+      System.out.println("Le réseau est connexe");
+    else 
+      System.out.println("Le réseau n'est pas connexe");
+    
+    getDegreeDistribution(graph, "src/main/ressources/barabasi/degreeDistribution.csv");
+    getDistances(graph, "src/main/ressources/barabasi/distanceDistribution.csv");
   }
 }

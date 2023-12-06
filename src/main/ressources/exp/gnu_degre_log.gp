@@ -12,10 +12,10 @@ lambda = 6.62208890914917
 poisson(k) = lambda ** k * exp(-lambda) / gamma(k + 1)
 
 f(x) = lc - gamma * x
-fit f(x) '../ressources/degreeDistribution.csv' using (log($1)):(log($2)) via lc, gamma
+fit f(x) 'degreeDistribution.csv' using (log($1)):(log($2)) via lc, gamma
 
 c = exp(lc)
 power(k) = c * k ** (-gamma)
 
 
-plot '../ressources/degreeDistribution.csv' using 1:2 with points title 'Distribution des degrés (log-log)', poisson(x) title 'Loi de poisson', power(x) title 'Loi de puissance'
+plot 'degreeDistribution.csv' using 1:2 with points title 'Distribution des degrés (log-log)', poisson(x) title 'Loi de poisson', power(x) title 'Loi de puissance'

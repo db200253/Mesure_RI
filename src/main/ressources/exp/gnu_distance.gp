@@ -7,4 +7,4 @@ set ylabel "Fréquence"
 
 set logscale y
 
-plot '../ressources/distanceDistribution.csv' using 1:(1) smooth kdensity  title "Distribution des distances"
+plot 'distanceDistribution.csv' using 1:(1) smooth kdensity  title "Distribution des distances (log) dans le réseau"
