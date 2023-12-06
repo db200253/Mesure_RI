@@ -5,4 +5,4 @@ set xlabel 'Degré'
 set ylabel 'Nombre de nœuds'
 set datafile separator ','
 
-plot '../ressources/degreeDistribution.csv' using 1:2 with linespoints title 'Distribution des degrés'
+plot 'degreeDistribution.csv' using 1:2 with linespoints title 'Distribution des degrés'
