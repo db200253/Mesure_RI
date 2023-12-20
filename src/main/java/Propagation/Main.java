@@ -82,6 +82,7 @@ public class Main {
   private static void simulEpid() {
     
     Epidemie.go(g, 10, 0);
-    //Epidemie.go(g, 10, 1);
+    System.out.println();
+    Epidemie.go(g, 10, 1);
   }
 }

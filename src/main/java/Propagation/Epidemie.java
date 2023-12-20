@@ -17,32 +17,34 @@ public class Epidemie {
     final int SELECT = 2;
     final double TRANSMISSION_PROBABILITY = 0.142857143;
     final double RECOVERY_PROBABILITY = 0.071428571;
-    //final double IMMUNE_PROBABILITY = 0.5;
+    final double IMMUNE_PROBABILITY = 0.5;
 
     private static Graph g;
     private int immune;
     private String of;
     private List<Node> contamine;
-    //private List<Node> immunise;
+    private List<Node> immunise;
 
     public Epidemie(Graph graph, int immune) {
         
         g = graph;
         
-        switch(immune) {
-          case 0 : this.immune = NOTHING;
-          case 1 : this.immune = ALEA;
-          case 2 : this.immune = SELECT;
-        }
-        
-        switch(immune) {
-          case 0 : this.of = "src/main/ressources/nothing/cases.csv";
-          case 1 : this.of = "src/main/ressources/alea/cases.csv";
-          case 2 : this.of = "src/main/ressources/select/cases.csv";
+        if(immune == 0) {
+          
+          this.immune = NOTHING;
+          this.of = "src/main/ressources/nothing/cases.csv";
+        } else if(immune == 1) {
+          
+          this.immune = ALEA;
+          this.of = "src/main/ressources/alea/cases.csv";
+        } else {
+          
+          this.immune = SELECT;
+          this.of = "src/main/ressources/select/cases.csv";
         }
         
         contamine = new ArrayList<>();
-        //immunise = new ArrayList<>();
+        immunise = new ArrayList<>();
     }
 
     public void runSimulation(int initialInfectedNodes, int simulationSteps) {
@@ -85,7 +87,7 @@ public class Epidemie {
         }
         
         for (Node node : g) {
-          /*
+          
             if(immune == ALEA) {
               
               if(!(node.hasAttribute("infected")) && Math.random() < IMMUNE_PROBABILITY) {
@@ -93,9 +95,9 @@ public class Epidemie {
                 node.setAttribute("immune", true);
                 immunise.add(node);
               }
-            }*/
+            }
             
-            if(!(node.hasAttribute("infected"))/* && !(immunise.contains(node))*/) {
+            if(!(node.hasAttribute("infected")) && !(immunise.contains(node))) {
               
               node.setAttribute("infected", false);
             }
@@ -106,7 +108,7 @@ public class Epidemie {
         for (Node node : g) {
             boolean infected = (boolean) node.getAttribute("infected");
 
-            //if(immune == NOTHING) {
+            if(immune == NOTHING) {
               
               if (infected) {
                 for (Node neighbor : getNeighbours(node)) {
@@ -126,14 +128,14 @@ public class Epidemie {
                     contamine.remove(node);
                 }
               }
-            /*}*/ /*else if (immune == ALEA) {
+            } else if (immune == ALEA) {
               
               if (infected) {
                 for (Node neighbor : getNeighbours(node)) {
                   
                     boolean neighborInfected = (boolean) neighbor.getAttribute("infected");
                     
-                    if (!neighborInfected && Math.random() < TRANSMISSION_PROBABILITY) {
+                    if (!neighborInfected && !(immunise.contains(neighbor)) && Math.random() < TRANSMISSION_PROBABILITY) {
                       
                         neighbor.setAttribute("infected", true);
                         contamine.add(neighbor);
@@ -146,7 +148,7 @@ public class Epidemie {
                     contamine.remove(node);
                 }
               }
-            }*/
+            }
         }
     }
 
