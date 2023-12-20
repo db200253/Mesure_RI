@@ -3,8 +3,6 @@ package Propagation;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
-
 import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
@@ -94,7 +92,13 @@ public class Epidemie {
     
     private static List<Node> getNeighbours(Node n) {
       
-      List<Edge> le = n.leavingEdges().collect(Collectors.toList());
+      List<Edge> le = new ArrayList<>();
+      
+      for(Edge e : n) {
+        
+        le.add(e);
+      }
+      
       List<Node> voisins = new ArrayList<>();
       
       for(Edge e : le) {
@@ -112,7 +116,6 @@ public class Epidemie {
 
     public static void go(Graph g, int step, int immune) {
 
-        System.out.println("coucou");
         Epidemie simulation = new Epidemie(g, immune);
         simulation.runSimulation(1, step);
     }

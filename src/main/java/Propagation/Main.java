@@ -81,7 +81,6 @@ public class Main {
   
   private static void simulEpid() {
     
-    System.out.println("couco");
     Epidemie.go(g, 12, 0);
   }
 }
