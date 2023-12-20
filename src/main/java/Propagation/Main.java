@@ -81,6 +81,7 @@ public class Main {
   
   private static void simulEpid() {
     
-    Epidemie.go(g, 12, 0);
+    Epidemie.go(g, 10, 0);
+    //Epidemie.go(g, 10, 1);
   }
 }
