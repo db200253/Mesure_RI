@@ -18,6 +18,7 @@ public class Epidemie {
     final double RECOVERY_PROBABILITY = 1/14;
 
     private static Graph g;
+    @SuppressWarnings("unused")
     private int immune;
     private List<Node> contamine;
 
