@@ -32,13 +32,15 @@ public class Main {
       printUsefullDatas();
       System.out.println();
       getet();
+      System.out.println("------------------------------------------------");
+      simulEpid();
       fs.removeSink(g);
     }
   }
   
   /**
    * Question 1
-   * Taux de propagation : proba de transmission (1/7) / taux de guérison (2/30) = 15/7
+   * Taux de propagation : proba de transmission (1/7) / taux de guérison (2/30) ~ 2
    * Seuil épidémique : k/k² = 6.62.../144.00... = 0.045...
    * Seuil théorique : 1/k+1 => 1/7.62... = 0,1311963
    * Seuil épidémique > taux de propagation donc la maladie progresse
@@ -73,9 +75,13 @@ public class Main {
     double avgDegree = Toolkit.averageDegree(g);
     double sk = r/d;
     
-    System.out.println("sk = " + sk);
+    System.out.println("<k²> = " + sk);
     System.out.println("Seuil épidémique = " + avgDegree/sk);
   }
   
-  
+  private static void simulEpid() {
+    
+    System.out.println("couco");
+    Epidemie.go(g, 12, 0);
+  }
 }
