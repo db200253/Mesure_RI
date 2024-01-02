@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.graphstream.algorithm.Toolkit;
 import org.graphstream.graph.Graph;
+import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.DefaultGraph;
 import org.graphstream.stream.file.FileSource;
 import org.graphstream.stream.file.FileSourceEdge;
@@ -81,8 +82,21 @@ public class Main {
   
   private static void simulEpid() {
     
-    Epidemie.go(g, 10, 0);
+    /*Epidemie.go(g, 90, 0);
+    clearGraph();
     System.out.println();
-    Epidemie.go(g, 10, 1);
+    Epidemie.go(g, 90, 1);
+    clearGraph();
+    System.out.println();*/
+    Epidemie.go(g, 90, 2);
+  }
+  
+  private static void clearGraph() {
+	  
+	  for(Node n : g) {
+		  
+		  n.setAttribute("infected", false);
+		  n.setAttribute("immune", false);
+	  }
   }
 }

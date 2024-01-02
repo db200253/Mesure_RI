@@ -55,7 +55,7 @@ public class Epidemie {
             int ci = countInfected();
             System.out.println("Step " + step + ": Infected Count = " + ci);
             
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(of))) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(of, true))) {
               
               writer.write(step + "," + ci + "\n");
             } catch (IOException e) {
@@ -68,7 +68,7 @@ public class Epidemie {
         
         System.out.println("Step " + simulationSteps + ": Infected Count = " + countInfected());
         
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(of))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(of, true))) {
           
           writer.write(simulationSteps + "," + countInfected() + "\n");
         } catch (IOException e) {
@@ -78,6 +78,12 @@ public class Epidemie {
     }
 
     private void initializeSimulation(int initialInfectedNodes) {
+    	
+    	for(Node n: g) {
+    		
+    		n.setAttribute("infected", false);
+    	}
+    	
         Random random = new Random();
 
         for (int i = 0; i < initialInfectedNodes; ++i) {
@@ -90,66 +96,83 @@ public class Epidemie {
           
             if(immune == ALEA) {
               
-              if(!(node.hasAttribute("infected")) && Math.random() < IMMUNE_PROBABILITY) {
+              if(Math.random() < IMMUNE_PROBABILITY) {
                 
                 node.setAttribute("immune", true);
                 immunise.add(node);
               }
-            }
-            
-            if(!(node.hasAttribute("infected")) && !(immunise.contains(node))) {
-              
-              node.setAttribute("infected", false);
+            } else if (immune == SELECT) {
+            	
+            	if(Math.random() < IMMUNE_PROBABILITY) {
+                    
+                    List<Node> voisins = new ArrayList<>();
+                    List<Edge> le = new ArrayList<>();
+                    
+                    for(Edge e : node) {
+                        
+                        le.add(e);
+                    }
+                    
+                    for(Edge e : le) {
+                        
+                        voisins.add(e.getOpposite(node));
+                    }
+                    
+                    int randomNode = random.nextInt(voisins.size());
+                    int id = voisins.get(randomNode).getIndex();
+                    g.getNode(id).setAttribute("immune", true);
+                    immunise.add(g.getNode(id));
+                }
             }
         }
+        
+        System.out.println(immunise.size());
     }
 
     private void updateEpidemicState() {
         for (Node node : g) {
             boolean infected = (boolean) node.getAttribute("infected");
-
-            if(immune == NOTHING) {
-              
-              if (infected) {
-                for (Node neighbor : getNeighbours(node)) {
-                  
-                    boolean neighborInfected = (boolean) neighbor.getAttribute("infected");
-                    
-                    if (!neighborInfected && Math.random() < TRANSMISSION_PROBABILITY) {
-                      
-                        neighbor.setAttribute("infected", true);
-                        contamine.add(neighbor);
-                    }
-                }
-
-                if (Math.random() < RECOVERY_PROBABILITY) {
-                  
-                    node.setAttribute("infected", false);
-                    contamine.remove(node);
-                }
-              }
-            } else if (immune == ALEA) {
-              
-              if (infected) {
-                for (Node neighbor : getNeighbours(node)) {
-                  
-                    boolean neighborInfected = (boolean) neighbor.getAttribute("infected");
-                    
-                    if (!neighborInfected && !(immunise.contains(neighbor)) && Math.random() < TRANSMISSION_PROBABILITY) {
-                      
-                        neighbor.setAttribute("infected", true);
-                        contamine.add(neighbor);
-                    }
-                }
-
-                if (Math.random() < RECOVERY_PROBABILITY) {
-                  
-                    node.setAttribute("infected", false);
-                    contamine.remove(node);
-                }
-              }
-            }
-        }
+            
+            if (infected) {
+	            if(immune == NOTHING) {
+	              
+	                for (Node neighbor : getNeighbours(node)) {
+	                  
+	                    boolean neighborInfected = (boolean) neighbor.getAttribute("infected");
+	                    
+	                    if (!neighborInfected && Math.random() < TRANSMISSION_PROBABILITY) {
+	                      
+	                        neighbor.setAttribute("infected", true);
+	                        contamine.add(neighbor);
+	                    }
+	                }
+	
+	                if (Math.random() < RECOVERY_PROBABILITY) {
+	                  
+	                    node.setAttribute("infected", false);
+	                    contamine.remove(node);
+	                }
+	            } else {
+	             
+	                for (Node neighbor : getNeighbours(node)) {
+	                  
+	                    boolean neighborInfected = (boolean) neighbor.getAttribute("infected");
+	                    
+	                    if (!neighborInfected && !(immunise.contains(neighbor)) && Math.random() < TRANSMISSION_PROBABILITY) {
+	                      
+	                        neighbor.setAttribute("infected", true);
+	                        contamine.add(neighbor);
+	                    }
+	                }
+	
+	                if (Math.random() < RECOVERY_PROBABILITY) {
+	                  
+	                    node.setAttribute("infected", false);
+	                    contamine.remove(node);
+	                }
+	            }
+    		}
+        }	
     }
 
     private int countInfected() {

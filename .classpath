@@ -24,10 +24,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/etudiant/db200253/Téléchargements/gs-algo-2.0.jar"/>
-	<classpathentry kind="lib" path="/home/etudiant/db200253/Téléchargements/gs-core-2.0.jar"/>
-	<classpathentry kind="lib" path="/home/etudiant/db200253/Téléchargements/gs-ui-javafx-2.0.jar"/>
-	<classpathentry kind="lib" path="/home/etudiant/db200253/Téléchargements/gs-ui-swing-2.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/staff/Downloads/gs-algo-2.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/staff/Downloads/gs-core-2.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/staff/Downloads/gs-ui-swing-2.0.jar"/>
