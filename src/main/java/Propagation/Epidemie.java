@@ -3,6 +3,7 @@ package Propagation;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -24,6 +25,7 @@ public class Epidemie {
     private String of;
     private List<Node> contamine;
     private List<Node> immunise;
+    private int contaminable = 0;
 
     public Epidemie(Graph graph, int immune) {
         
@@ -49,15 +51,17 @@ public class Epidemie {
 
     public void runSimulation(int initialInfectedNodes, int simulationSteps) {
         initializeSimulation(initialInfectedNodes);
+        DecimalFormat df = new DecimalFormat("#.##");
 
         for (int step = 0; step < simulationSteps; ++step) {
           
-            int ci = countInfected();
-            System.out.println("Step " + step + ": Infected Count = " + ci);
+            double ci = countInfected();
+            String c = df.format(ci);
+            System.out.println("Step " + step + ": Infected Count = " + c + "%");
             
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(of, true))) {
               
-              writer.write(step + "," + ci + "\n");
+              writer.write(step + "," + c + "\n");
             } catch (IOException e) {
               
               e.printStackTrace();
@@ -66,11 +70,14 @@ public class Epidemie {
             updateEpidemicState();
         }
         
-        System.out.println("Step " + simulationSteps + ": Infected Count = " + countInfected());
+        double ci = countInfected();
+        String c = df.format(ci);
+        
+        System.out.println("Step " + simulationSteps + ": Infected Count = " + c + "%");
         
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(of, true))) {
           
-          writer.write(simulationSteps + "," + countInfected() + "\n");
+          writer.write(simulationSteps + "," + c + "\n");
         } catch (IOException e) {
           
           e.printStackTrace();
@@ -78,6 +85,8 @@ public class Epidemie {
     }
 
     private void initializeSimulation(int initialInfectedNodes) {
+    	
+    	contaminable = g.getNodeCount();
     	
     	for(Node n: g) {
     		
@@ -126,7 +135,7 @@ public class Epidemie {
             }
         }
         
-        System.out.println(immunise.size());
+        contaminable -= immunise.size();
     }
 
     private void updateEpidemicState() {
@@ -175,9 +184,9 @@ public class Epidemie {
         }	
     }
 
-    private int countInfected() {
+    private double countInfected() {
         
-      return contamine.size();
+      return (double)contamine.size() * 100.0 / (double)contaminable ;
     }
     
     private static List<Node> getNeighbours(Node n) {

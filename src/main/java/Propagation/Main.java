@@ -34,7 +34,7 @@ public class Main {
       System.out.println();
       getet();
       System.out.println("------------------------------------------------");
-      //simulEpid();
+      simulEpid();
       fs.removeSink(g);
     }
   }
@@ -82,11 +82,11 @@ public class Main {
   
   private static void simulEpid() {
     
-    Epidemie.go(g, 90, 0);
+	  /*Epidemie.go(g, 90, 0);
     clearGraph();
     System.out.println();
     Epidemie.go(g, 90, 1);
-    clearGraph();
+    clearGraph();*/
     System.out.println();
     Epidemie.go(g, 90, 2);
   }
