@@ -24,7 +24,7 @@ public class Epidemie {
     private int immune;
     private String of;
     private List<Node> contamine;
-    private List<Node> immunise;
+    private static List<Node> immunise;
     private int contaminable = 0;
 
     public Epidemie(Graph graph, int immune) {
@@ -52,6 +52,10 @@ public class Epidemie {
     public void runSimulation(int initialInfectedNodes, int simulationSteps) {
         initializeSimulation(initialInfectedNodes);
         DecimalFormat df = new DecimalFormat("#.##");
+        //System.out.println("Degre moyen pour immune : " + immune + " = " + getDegre(g));
+        
+        //System.out.println("immune = " + immune);
+        //getet();
 
         for (int step = 0; step < simulationSteps; ++step) {
           
@@ -206,6 +210,93 @@ public class Epidemie {
       }
       
       return voisins;
+    }
+    
+    /**
+     * 
+     * @param g
+     * @return degre moyen du graphe
+     * Pour immune = nothing -> dm = 6.62
+     * Pour immune = alea -> dm = 3.31
+     * Pour immune = select -> dm = 2.97
+     * La différence entre alea et select provient du fait que dans alea -> choix du node immunisé est random donc quasi uniforme
+     * dans select -> choix d'un voisin, les nodes ayant un degré superieur ont plus de chance d'être immunisés
+     */
+    private static double getDegre(Graph g) {
+    	
+    	double degre = 0.0;
+    	
+    	for(Node n : g) {
+    		
+    		List<Node> voisins = getNeighbours(n);
+    		
+    		for(Node v : voisins) {
+    			
+    			if(!(immunise.contains(v))) {
+    				
+    				degre++;
+    			}
+    		}
+    	}
+    	
+    	degre /= g.getNodeCount();
+    	
+    	return degre;
+    }
+    
+    private static int[] getDegreDistrib(Graph g) {
+    	
+    	int[] distrib = new int[350];
+    	for(int i = 0; i < distrib.length; ++i) {
+    		
+    		distrib[i] = 0;
+    	}
+    	
+    	for(Node n : g) {
+    		
+    		if(!immunise.contains(n)) {
+    			
+    			int degre = 0;
+        		
+        		List<Node> voisins = getNeighbours(n);
+        		
+        		for(Node v : voisins) {
+        			
+        			if(!(immunise.contains(v))) {
+        				
+        				degre++;
+        			}
+        		}
+        		
+        		distrib[degre]++;
+    		}
+    	}
+    	
+    	return distrib;
+    }
+    
+    /**
+     * immune = alea -> seuil épidémique = 0.073
+     * immune = select -> seuil épidémique = 0.204
+     */
+    private static void getet() {
+        
+        int[] distrib = getDegreDistrib(g);
+        
+        double r = 0.0;
+        double d = 0.0;
+        
+        for(int i = 1; i < distrib.length; ++i) {
+          
+          r += i * i * distrib[i];
+          d += distrib[i];
+        }
+        
+        double avgDegree = getDegre(g);
+        double sk = r/d;
+        
+        System.out.println("<k²> = " + sk);
+        System.out.println("Seuil épidémique = " + avgDegree/sk);
     }
 
     public static void go(Graph g, int step, int immune) {
