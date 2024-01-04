@@ -34,15 +34,21 @@ public class Epidemie {
         if(immune == 0) {
           
           this.immune = NOTHING;
-          this.of = "src/main/ressources/nothing/cases.csv";
+          //this.of = "src/main/ressources/Propagation/graph/nothing/cases.csv";
+          //this.of = "src/main/ressources/Propagation/aleatoire/nothing/cases.csv";
+          this.of = "src/main/ressources/Propagation/barabasi/nothing/cases.csv";
         } else if(immune == 1) {
           
           this.immune = ALEA;
-          this.of = "src/main/ressources/alea/cases.csv";
+          //this.of = "src/main/ressources/Propagation/graph/alea/cases.csv";
+          //this.of = "src/main/ressources/Propagation/aleatoire/alea/cases.csv";
+          this.of = "src/main/ressources/Propagation/barabasi/alea/cases.csv";
         } else {
           
           this.immune = SELECT;
-          this.of = "src/main/ressources/select/cases.csv";
+          //this.of = "src/main/ressources/Propagation/graph/select/cases.csv";
+          //this.of = "src/main/ressources/Propagation/aleatoire/select/cases.csv";
+          this.of = "src/main/ressources/Propagation/barabasi/select/cases.csv";
         }
         
         contamine = new ArrayList<>();
@@ -132,9 +138,9 @@ public class Epidemie {
                     }
                     
                     int randomNode = random.nextInt(voisins.size());
-                    int id = voisins.get(randomNode).getIndex();
-                    g.getNode(id).setAttribute("immune", true);
-                    immunise.add(g.getNode(id));
+	                int id = voisins.get(randomNode).getIndex();
+	                g.getNode(id).setAttribute("immune", true);
+	                immunise.add(g.getNode(id));
                 }
             }
         }
@@ -193,7 +199,7 @@ public class Epidemie {
       return (double)contamine.size() * 100.0 / (double)contaminable ;
     }
     
-    private static List<Node> getNeighbours(Node n) {
+    public static List<Node> getNeighbours(Node n) {
       
       List<Edge> le = new ArrayList<>();
       
@@ -278,6 +284,9 @@ public class Epidemie {
     /**
      * immune = alea -> seuil épidémique = 0.073
      * immune = select -> seuil épidémique = 0.204
+     * taux de propagation = 1/7 donc :
+     * seAlea < tp -> la maladie se propage
+     * seSelect > tp -> la maladie va disparaître
      */
     private static void getet() {
         
