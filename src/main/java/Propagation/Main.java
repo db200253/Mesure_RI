@@ -10,6 +10,7 @@ import java.util.Queue;
 import java.util.Random;
 
 import org.graphstream.algorithm.Toolkit;
+import org.graphstream.algorithm.generator.BarabasiAlbertGenerator;
 import org.graphstream.algorithm.generator.Generator;
 import org.graphstream.algorithm.generator.RandomGenerator;
 import org.graphstream.graph.Graph;
@@ -23,7 +24,8 @@ import org.graphstream.stream.file.FileSourceEdge;
 public class Main {
   
   //static Graph g = new DefaultGraph("Reseau");
-  static Graph g2 = new SingleGraph("Random");
+  //static Graph g2 = new SingleGraph("Random");
+	static Graph g3 = new SingleGraph("Barabasi-Albert");
  
   public static void main(String[] args) {
     
@@ -34,7 +36,7 @@ public class Main {
     fs.addSink(g);*/
     
     int numNodes = 317080;
-    Generator gen = new RandomGenerator(6.62208890914917);
+    /*Generator gen = new RandomGenerator(6.62208890914917);
     
     gen.addSink(g2);
     gen.begin();
@@ -43,10 +45,23 @@ public class Main {
         
         gen.nextEvents();
     }
-    gen.end();
+    gen.end();*/
+    
+    int m = 6;
+    
+    Generator gen2 = new BarabasiAlbertGenerator(m);
+    
+    gen2.addSink(g3);
+    gen2.begin();
+    
+    for (int i = 0; i < numNodes; i++) {
+      
+        gen2.nextEvents();
+    }
+    gen2.end();
     
     /*On rend g2 connexe*/
-    connect(g2);
+    //connect(g2);
     
     /*try {
       
@@ -58,17 +73,22 @@ public class Main {
       
       /*System.out.println("Graphe experimental : ");
       printUsefullDatas(g);*/
-      System.out.println("Graphe aléatoire : ");
-      printUsefullDatas(g2);
+      //System.out.println("Graphe aléatoire : ");
+      //printUsefullDatas(g2);
+      System.out.println("Graphe de Barabasi-Albert : ");
+      printUsefullDatas(g3);
       System.out.println();
       //getet(g);
-      getet(g2);
+      //getet(g2);
+      getet(g3);
       System.out.println("------------------------------------------------");
       //simulEpid(g);
-      simulEpid(g2);
+      //simulEpid(g2);
+      simulEpid(g3);
       
       //fs.removeSink(g);
-      gen.removeSink(g2);
+      //gen.removeSink(g2);
+      gen2.removeSink(g3);
     //}
   }
   
