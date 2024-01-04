@@ -16,6 +16,9 @@ public class Epidemie {
     final int NOTHING = 0;
     final int ALEA = 1;
     final int SELECT = 2;
+    final int BASE = 0;
+    final int ALEATOIRE = 1;
+    final int BARABASI = 2;
     final double TRANSMISSION_PROBABILITY = 0.142857143;
     final double RECOVERY_PROBABILITY = 0.071428571;
     final double IMMUNE_PROBABILITY = 0.5;
@@ -27,28 +30,52 @@ public class Epidemie {
     private static List<Node> immunise;
     private int contaminable = 0;
 
-    public Epidemie(Graph graph, int immune) {
+    public Epidemie(Graph graph, int base, int immune) {
         
         g = graph;
         
         if(immune == 0) {
           
           this.immune = NOTHING;
-          //this.of = "src/main/ressources/Propagation/graph/nothing/cases.csv";
-          //this.of = "src/main/ressources/Propagation/aleatoire/nothing/cases.csv";
-          this.of = "src/main/ressources/Propagation/barabasi/nothing/cases.csv";
+          
+          if(base == 0) { 
+        	  
+        	  this.of = "src/main/ressources/Propagation/graph/nothing/cases.csv"; 
+          } else if (base == 1) {
+        	  
+        	  this.of = "src/main/ressources/Propagation/aleatoire/nothing/cases.csv";
+          } else {
+        	  
+        	  this.of = "src/main/ressources/Propagation/barabasi/nothing/cases.csv";
+          }
         } else if(immune == 1) {
           
           this.immune = ALEA;
-          //this.of = "src/main/ressources/Propagation/graph/alea/cases.csv";
-          //this.of = "src/main/ressources/Propagation/aleatoire/alea/cases.csv";
-          this.of = "src/main/ressources/Propagation/barabasi/alea/cases.csv";
+          
+          if(base == 0) { 
+        	  
+        	  this.of = "src/main/ressources/Propagation/graph/alea/cases.csv"; 
+          } else if (base == 1) {
+        	  
+        	  this.of = "src/main/ressources/Propagation/aleatoire/alea/cases.csv";
+          } else {
+        	  
+        	  this.of = "src/main/ressources/Propagation/barabasi/alea/cases.csv";
+          }
         } else {
           
           this.immune = SELECT;
-          //this.of = "src/main/ressources/Propagation/graph/select/cases.csv";
-          //this.of = "src/main/ressources/Propagation/aleatoire/select/cases.csv";
-          this.of = "src/main/ressources/Propagation/barabasi/select/cases.csv";
+          
+          if(base == 0) { 
+        	  
+        	  this.of = "src/main/ressources/Propagation/graph/select/cases.csv"; 
+          } else if (base == 1) {
+        	  
+        	  this.of = "src/main/ressources/Propagation/aleatoire/select/cases.csv";
+          } else {
+        	  
+        	  this.of = "src/main/ressources/Propagation/barabasi/select/cases.csv";
+          }
         }
         
         contamine = new ArrayList<>();
@@ -58,10 +85,10 @@ public class Epidemie {
     public void runSimulation(int initialInfectedNodes, int simulationSteps) {
         initializeSimulation(initialInfectedNodes);
         DecimalFormat df = new DecimalFormat("#.##");
-        //System.out.println("Degre moyen pour immune : " + immune + " = " + getDegre(g));
+        System.out.println("Degre moyen pour immune : " + immune + " = " + getDegre(g));
         
-        //System.out.println("immune = " + immune);
-        //getet();
+        System.out.println("immune = " + immune);
+        getet();
 
         for (int step = 0; step < simulationSteps; ++step) {
           
@@ -308,9 +335,9 @@ public class Epidemie {
         System.out.println("Seuil épidémique = " + avgDegree/sk);
     }
 
-    public static void go(Graph g, int step, int immune) {
+    public static void go(Graph g, int step, int modele, int immune) {
 
-        Epidemie simulation = new Epidemie(g, immune);
+        Epidemie simulation = new Epidemie(g, modele, immune);
         simulation.runSimulation(1, step);
     }
 }

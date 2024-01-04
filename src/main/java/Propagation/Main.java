@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Queue;
-import java.util.Random;
-
 import org.graphstream.algorithm.Toolkit;
 import org.graphstream.algorithm.generator.BarabasiAlbertGenerator;
 import org.graphstream.algorithm.generator.Generator;
@@ -17,26 +15,25 @@ import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.DefaultGraph;
 import org.graphstream.graph.implementations.SingleGraph;
-import org.graphstream.graph.implementations.SingleNode;
 import org.graphstream.stream.file.FileSource;
 import org.graphstream.stream.file.FileSourceEdge;
 
 public class Main {
   
-  //static Graph g = new DefaultGraph("Reseau");
-  //static Graph g2 = new SingleGraph("Random");
-	static Graph g3 = new SingleGraph("Barabasi-Albert");
+  static Graph g = new DefaultGraph("Reseau");
+  static Graph g2 = new SingleGraph("Random");
+  static Graph g3 = new SingleGraph("Barabasi-Albert");
  
   public static void main(String[] args) {
     
     System.setProperty("org.graphstream.ui", "swing");
-    /*String filePath = "src/main/ressources/com-dblp.ungraph.txt";
+    String filePath = "src/main/ressources/com-dblp.ungraph.txt";
     FileSource fs = new FileSourceEdge();
     
-    fs.addSink(g);*/
+    fs.addSink(g);
     
     int numNodes = 317080;
-    /*Generator gen = new RandomGenerator(6.62208890914917);
+    Generator gen = new RandomGenerator(6.62208890914917);
     
     gen.addSink(g2);
     gen.begin();
@@ -45,7 +42,7 @@ public class Main {
         
         gen.nextEvents();
     }
-    gen.end();*/
+    gen.end();
     
     int m = 6;
     
@@ -61,35 +58,39 @@ public class Main {
     gen2.end();
     
     /*On rend g2 connexe*/
-    //connect(g2);
+    connect(g2);
     
-    /*try {
+    try {
       
       fs.readAll(filePath);
     } catch(IOException e) {
       
       e.printStackTrace();
-    } finally {*/
+    } finally {
       
-      /*System.out.println("Graphe experimental : ");
-      printUsefullDatas(g);*/
-      //System.out.println("Graphe aléatoire : ");
-      //printUsefullDatas(g2);
+      System.out.println("Graphe experimental : ");
+      printUsefullDatas(g);
+      getet(g);
+      System.out.println("------------------------------------------------");
+      simulEpid(g, 0);
+      System.out.println("------------------------------------------------");
+      System.out.println("Graphe aléatoire : ");
+      printUsefullDatas(g2);
+      getet(g2);
+      System.out.println("------------------------------------------------");
+      simulEpid(g2, 1);
+      System.out.println("------------------------------------------------");
       System.out.println("Graphe de Barabasi-Albert : ");
       printUsefullDatas(g3);
-      System.out.println();
-      //getet(g);
-      //getet(g2);
       getet(g3);
       System.out.println("------------------------------------------------");
-      //simulEpid(g);
-      //simulEpid(g2);
-      simulEpid(g3);
+      simulEpid(g3, 2);
+      System.out.println("------------------------------------------------");
       
-      //fs.removeSink(g);
-      //gen.removeSink(g2);
+      fs.removeSink(g);
+      gen.removeSink(g2);
       gen2.removeSink(g3);
-    //}
+    }
   }
   
   /**
@@ -133,15 +134,15 @@ public class Main {
     System.out.println("Seuil épidémique = " + avgDegree/sk);
   }
   
-  private static void simulEpid(Graph g) {
+  private static void simulEpid(Graph g, int modele) {
     
-	Epidemie.go(g, 90, 0);
+	Epidemie.go(g, 90, modele, 0);
     clearGraph(g);
     System.out.println();
-    Epidemie.go(g, 90, 1);
+    Epidemie.go(g, 90, modele, 1);
     clearGraph(g);
     System.out.println();
-    Epidemie.go(g, 90, 2);
+    Epidemie.go(g, 90, modele, 2);
   }
   
   private static void clearGraph(Graph g) {
@@ -157,8 +158,6 @@ public class Main {
 	    Set<Node> visitedNodes = new HashSet<>();
 	    List<Node> allNodes = new ArrayList<>();
 	    
-	    int compteur = 0;
-	    
 	    for(Node n: g) allNodes.add(n);
 
 	    // Identifier les composantes connexes avec un bfs
@@ -169,8 +168,6 @@ public class Main {
 	            connectedComponents.add(component);
 	        }
 	    }
-	    
-	    compteur = connectedComponents.size() - 1;
 
 	    // Connecter les composantes connexes
 	    if (connectedComponents.size() > 1) {
