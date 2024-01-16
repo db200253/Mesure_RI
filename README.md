@@ -34,4 +34,7 @@ Et voilà la distribution des degrés en échelle log-log :
 ![Distribution des degrés en échelle logarithmique](/src/main/ressources/Mesures/exp/degree_distribution_log_plot.png)
 
 
-Nous observons que la distribution des degrés en échelle log-log ne forme pas une ligne droite, on en conclut que 
+Nous observons que la distribution des degrés en échelle log-log ne forme pas une ligne droite mais semble suivre la loi de puissance, on peut donc estimer que l'on est en présence d'un réseau sans échelle.
+
+## 4) Distribution des distances
+
