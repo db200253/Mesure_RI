@@ -11,7 +11,7 @@ Pour cette partie, plusieurs indicateurs seront intéressants à étudier : le d
 
 En ce qui concerne les mesures de base, commencons par en donner quelques unes. Dans le graphe étudié, il y a 317 080 noeuds et 1 049 866 liens, le degré moyen est de 6.62208890914917 tandis que le coefficicient de clustering est de 0.6324308280637396.
 Pour mettre en relief ce fameux coefficicient de clustering, calculons à combien il serait dans le cas d'un réseau aléatoire de même taille et même degré moyen :
-Ci = <k>/N -> Ci = degré moyen / nombre de noeuds -> Ci = 0,000020885
+Ci = degré moyen / nombre de noeuds -> Ci = 0,000020885
 Dans le cas d'un réseau aléatoire de même taille et de même degré moyen, le coefficicient de clustering sera égal à 0,000020885.
 
 Le réseau est connexe
