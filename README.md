@@ -14,4 +14,11 @@ Pour mettre en relief ce fameux coefficicient de clustering, calculons à combie
 Ci = degré moyen / nombre de noeuds -> Ci = 0,000020885
 Dans le cas d'un réseau aléatoire de même taille et de même degré moyen, le coefficicient de clustering sera égal à 0,000020885.
 
-Le réseau est connexe
+## 2) Connexité
+
+Dans notre cas, une méthode permet de vérifier si le réseau est connexe : il l'est, cependant ce ne sera pas le cas pour un réseau aléatoire de même taille et degré moyen.
+Pour qu'un réseau aléatoire soit connexe, il faut que p0 (la probabilité qu'un noeud ait 0 lien) soit égal ou très proche de 0. On sait que p0 = (1-p)^(N-1), ainsi si le degré moyen = 6.62208890914917, p0 = 0.0013.
+Pour que le réseau soit connexe on observe qu'il faut que le degré moyen soit supérieur ou égal à 14, dans ce cas p0 = 0,000000831, ce qui est assez proche de 0 pour que dans le cadre d'un réseau de cette taille, aucun noeud ne soit de degré 0.
+
+## 3) Distribution des degrés
+
