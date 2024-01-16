@@ -23,4 +23,4 @@ Pour que le réseau soit connexe on observe qu'il faut que le degré moyen soit 
 ## 3) Distribution des degrés
 
 Un des meilleurs indicateurs pour comprendre un graphe est la distribution des degrés, cela permet d'avoir une idée de l'organisation des liens, nous pouvons utiliser plusieurs échelles pour étudier cela, voilà la distibution des degrés brute : 
-!("src/main/ressources/exp/degree_distribution_plot.png")
+![]("src/main/ressources/exp/degree_distribution_plot.png")
