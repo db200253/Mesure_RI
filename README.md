@@ -34,3 +34,4 @@ Et voilà la distribution des degrés en échelle log-log :
 ![Distribution des degrés en échelle logarithmique](/src/main/ressources/Mesures/exp/degree_distribution_log_plot.png)
 
 
+Nous observons que la distribution des degrés en échelle log-log ne forme pas une ligne droite, on en conclut que 
