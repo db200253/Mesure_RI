@@ -110,7 +110,7 @@ Dans le cas d'un réseau aléatoire de même degré moyen, le seuil épidémique
 ## 2) Simulations
 
 Nous avons determiné 3 manières de propager le virus, dans la première rien n'est fait pour empêcher la propagation, dans la deuxième, 50% de la population est convaincue de s'immuniser (immunisation aléatoire) et dans la troisième, 50% de la population convaint un voisin choisi aléatoirement de s'immuniser (immunisation séléctive).
-Nous avons effectué la simulation pour avoir le comportement typique, voici les résultats : 
+Nous avons effectué la simulation plusieurs fois pour avoir le comportement typique, voici les résultats : 
 
 ![Epidémie](/src/main/ressources/Propagation/Epidemies/epidemie_plot.png)
 
@@ -124,3 +124,17 @@ La différence entre immunisations aleatoires et séléctives provient du fait q
 ## 4) Seuils épidémiques
 
 D'abord, on rappelle que dans le cas d'une évolution libre, le seuil épidémique était de 0.045, dans nos 2 situations d'immunisation, les seuils épidémiques passent respectivement à 0.073 pour le cas aléatoire et 0.204 pour le cas séléctif.
+
+## 5) Simulations dans d'autres réseaux
+
+Reprenons les simulations en utilisant les méthodes de génération de graphes précédemment étudiées, en ce qui concerne les résultats bruts, les voici : 
+
+Pour un graphe généré aléatoirement : 
+
+![Epidémie](/src/main/ressources/Propagation/Epidemies/epidemie_alea_plot.png)
+
+Pour un graphe généré avec la méthode d'attachement préférentiel : 
+
+![Epidémie](/src/main/ressources/Propagation/Epidemies/epidemie_ba_plot.png)
+
+Nous pouvons en conclure que
