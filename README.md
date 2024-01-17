@@ -86,4 +86,4 @@ Et voilà la distribution des degrés en échelle log-log :
 La distance moyenne est de , tandis que la distribution des distances est la suivante : 
 
 
-![Distribution des distances](/src/main/ressources/Mesures/random/distance_distribution_log_plot.png)
+![Distribution des distances](/src/main/ressources/Mesures/barabasi/distance_distribution_log_plot.png)
