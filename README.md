@@ -98,3 +98,27 @@ Le graphe généré avec la méthode d'attachement préférentiel a lui une dist
 De toute ces observations on en conclut que malgré quelques différences, le graphe généré avec la méthode d'attachement préférentiel est le plus proche de la réalité de notre réseau de collaboration, notamment en termes de création de communautés avec des individus fortement connectés, le graphe généré aléatoirement lui n'est pas pertinent pour étudier le comportement d'une population.
 
 # III/ Propagation
+
+Pour continuer l'étude de notre réseau de collaboration, nous allons simuler la propagation d'un virus dans les différents réseaux et sous différentes conditions, cela nous permettra de mieux comprendre l'architecture de nos réseaux et imaginer des solutions concrètes pour répondre à une information.
+
+## 1) Quelques indicateurs
+
+Dans notre scénario, le taux de propagation est égal à la probabilité de transmission (1/7) / taux de guérison (2/30), ainsi il est environ de 2.
+Le seuil épidémique est lui égal au degré moyen k / la moyenne du carré des degrés dans le réseau k2, dans notre scénario se = 0.045, le seuil épidémique étant inférieur au taux de propagation, la maladie progresse.
+Dans le cas d'un réseau aléatoire de même degré moyen, le seuil épidémique serait égal à 1/k+1 = 0,1311963.
+
+## 2) Simulations
+
+Nous avons determiné 3 manières de propager le virus, dans la première rien n'est fait pour empêcher la propagation, dans la deuxième, 50% de la population est convaincue de s'immuniser (immunisation aléatoire) et dans la troisième, 50% de la population convaint un voisin choisi aléatoirement de s'immuniser (immunisation séléctive).
+Nous avons effectué la simulation pour avoir le comportement typique, voici les résultats : 
+
+Pour la 1ere propagation : 
+
+
+
+Pour la 2e propagation :
+
+
+
+Pour la 3e propagation : 
+
