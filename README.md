@@ -137,4 +137,6 @@ Pour un graphe généré avec la méthode d'attachement préférentiel :
 
 ![Epidémie](/src/main/ressources/Propagation/Epidemies/epidemie_ba_plot.png)
 
-Nous pouvons en conclure que
+Nous pouvons remarquer que dans le cadre de l'aléatoire, l'immunisation séléctive ne marche pas du tout, cela est logique puisque pour rappel, les individus ont sensiblement le même nombre de connexion donc les individus "charnières" évoqués précédemment n'existe pas ici. Comme dit précédemment, ce genre de graphes n'est de toute façon pas pertinent si l'on souhaite représenter une population puisqu'il ne crée pas de communautés comme on peut l'observer dans la réalité.
+
+En ce qui concerne la méthode d'attachement préférentiel, on peut voir que la propagation est sensiblement similaire au cas experimental, les deux immunisations fonctionnent avec la séléctive meilleure. Le point de différence se trouve dans les valeurs, dans le cas experimental, les immunisations sont meilleures puisque la proportion d'infectés non immunisés sont inférieures, cela est probablement lié à la distance moyenne plus petite dans ce graphe, ce qui permet une propagation plus rapide et plus efficace.
