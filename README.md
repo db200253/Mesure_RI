@@ -112,13 +112,4 @@ Dans le cas d'un réseau aléatoire de même degré moyen, le seuil épidémique
 Nous avons determiné 3 manières de propager le virus, dans la première rien n'est fait pour empêcher la propagation, dans la deuxième, 50% de la population est convaincue de s'immuniser (immunisation aléatoire) et dans la troisième, 50% de la population convaint un voisin choisi aléatoirement de s'immuniser (immunisation séléctive).
 Nous avons effectué la simulation pour avoir le comportement typique, voici les résultats : 
 
-Pour la 1ere propagation : 
-
-
-
-Pour la 2e propagation :
-
-
-
-Pour la 3e propagation : 
-
+![Epidémie](/src/main/ressources/Propagation/Epidemies/epidemie_plot.png)
