@@ -49,4 +49,7 @@ Pour visualiser la distribution des distances, voici la courbe la représentant 
 Avec cette échelle linéaire, on observe que le pic global se situe quasiment au niveau de la distance moyenne, de plus on distingue une forme de cloche caractéristique (si l'on fait abstraction de certains pics locaux) d'une loi normale de moyenne égale à la distance moyenne et d'écart type égal à (degré moyen - distance moyenne). On peut donc émettre l'hypothèse que les distances suivent cette loi normale.
 
 ## 5) Graphe random
+
+Dans le graphe étudié, il y a 317 080 noeuds et 1 049 866 liens, le degré moyen est de 6.62208890914917 tandis que le coefficicient de clustering est de 0.6324308280637396.
+
 ## 6) Graphe de Barabasi-Albert
