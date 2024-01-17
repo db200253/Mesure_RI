@@ -69,7 +69,7 @@ La distance moyenne est de , tandis que voilà la distribution des distances :
 
 ## 6) Graphe de Barabasi-Albert
 
-Dans le graphe généré avec la méthode d'attachement préférentiel, il y a 317 087 noeuds et 1 049 017 liens, le degré moyen est de 6.6165876388549805 tandis que le coefficicient de clustering est de 2.2024673567699695E-5.
+Dans le graphe généré avec la méthode d'attachement préférentiel, il y a 317 082 noeuds et 1 109 902 liens, le degré moyen est de 7.000725269317627 tandis que le coefficicient de clustering est de 4.418844952432335E-4.
 Le réseau est connexe, la méthode de génération du graphe s'en assure.
 
 En ce qui concerne la distribution des degrés, on a la courbe suivante : 
