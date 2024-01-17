@@ -44,7 +44,7 @@ On a calculé la distance moyenne, comparons la maintenant à ln(N)/ln(k) = 6,70
 
 Pour visualiser la distribution des distances, voici la courbe la représentant : 
 
-![Distribution des distances](/src/main/ressources/Mesures/exp/distance_distribution_log_plot.png)
+![Distribution des distances](/src/main/ressources/Mesures/exp/distance_distribution_plot.png)
 
 Avec cette échelle linéaire, on observe que le pic global se situe quasiment au niveau de la distance moyenne, de plus on distingue une forme de cloche caractéristique (si l'on fait abstraction de certains pics locaux) d'une loi normale de moyenne égale à la distance moyenne et d'écart type égal à (degré moyen - distance moyenne). On peut donc émettre l'hypothèse que les distances suivent cette loi normale.
 
@@ -65,7 +65,7 @@ Et voilà la distribution des degrés en échelle log-log :
 
 La distance moyenne est de , tandis que voilà la distribution des distances : 
 
-![Distribution des distances](/src/main/ressources/Mesures/random/distance_distribution_log_plot.png)
+![Distribution des distances](/src/main/ressources/Mesures/random/distance_distribution_plot.png)
 
 ## 6) Graphe de Barabasi-Albert
 
@@ -86,4 +86,4 @@ Et voilà la distribution des degrés en échelle log-log :
 La distance moyenne est de , tandis que la distribution des distances est la suivante : 
 
 
-![Distribution des distances](/src/main/ressources/Mesures/barabasi/distance_distribution_log_plot.png)
+![Distribution des distances](/src/main/ressources/Mesures/barabasi/distance_distribution_plot.png)
