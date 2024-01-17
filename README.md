@@ -63,7 +63,7 @@ Et voilà la distribution des degrés en échelle log-log :
 
 ![Distribution des degrés en échelle logarithmique](/src/main/ressources/Mesures/random/degree_distribution_log_plot.png)
 
-La distance moyenne est de , tandis que voilà la distribution des distances : 
+La distance moyenne est de 4.6141562, tandis que voilà la distribution des distances : 
 
 ![Distribution des distances](/src/main/ressources/Mesures/random/distance_distribution_plot.png)
 
@@ -83,7 +83,18 @@ Et voilà la distribution des degrés en échelle log-log :
 ![Distribution des degrés en échelle logarithmique](/src/main/ressources/Mesures/barabasi/degree_distribution_log_plot.png)
 
 
-La distance moyenne est de , tandis que la distribution des distances est la suivante : 
+La distance moyenne est de 3.9236772, tandis que la distribution des distances est la suivante : 
 
 
 ![Distribution des distances](/src/main/ressources/Mesures/barabasi/distance_distribution_plot.png)
+
+## 7) Comparaisons avec la théorie et le graphe experimental
+
+En ce qui concerne le graphe aléatoire, on remarque d'abord que le coefficient de clustering est bien égal à celui calculé au tout début (0.00002) et que le réseau n'est pas connexe comme prévu. 
+Ensuite, on voit que le graphe généré aléatoirement a une distribution des degrés qui suit une loi de poisson à l'échelle log log, cela nous confirme l'aléatoire et le manque de réalisme dû à l'absence d'individus fortement connecté aux autres : tous les individus ont sensiblement le même nombre de connexions et sont à une distance comprise entre 3 et 5 d'un autre individu (ce qui confirme l'hypothèse des 6 points de séparation).
+
+Le graphe généré avec la méthode d'attachement préférentiel a lui une distribution des degrés beaucoup plus proche de notre réseau expérimental, elle n'est pas identique mais ressemblante, ce qui est logique puisque la méthode assure la construction d'un graphe autour d'individus fortement connectés pour représenter au mieux la formation de communautés. En ce qui concerne la distribution des distances, on peut aussi observer une ressemblance majeure avec le graphe experimental puisque l'on observe une loi normale de moyenne égale à la distance moyenne, cependant l'écart type lui, n'est pas égal à (degré moyen - distance moyenne).
+
+De toute ces observations on en conclut que malgré quelques différences, le graphe généré avec la méthode d'attachement préférentiel est le plus proche de la réalité de notre réseau de collaboration, notamment en termes de création de communautés avec des individus fortement connectés, le graphe généré aléatoirement lui n'est pas pertinent pour étudier le comportement d'une population.
+
+# III/ Propagation
