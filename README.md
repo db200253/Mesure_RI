@@ -113,3 +113,14 @@ Nous avons determiné 3 manières de propager le virus, dans la première rien n
 Nous avons effectué la simulation pour avoir le comportement typique, voici les résultats : 
 
 ![Epidémie](/src/main/ressources/Propagation/Epidemies/epidemie_plot.png)
+
+Une conclusion saute aux yeux : l'immunisation séléctive est bien plus efficace, ce qui est logique, en effet on a vu plus tôt que le réseau était organisé en communauté, de cette manière, on est sûr que les noeuds ayant beaucoup de connexion ont beaucoup plus de probabilité d'être choisis pour être immunisés, cela renforce l'immunité de groupe puisque le virus ne peut pas circuler par ces individus.
+
+## 3) Degrés moyens
+
+Dans le cadre d'une évolution libre, le degré moyen est de 6.62, pour une immunisation aléatoire, le degré moyen est de 3.31 et enfin en cas d'immunisation séléctive, le degré moyen est de 2.97.
+La différence entre immunisations aleatoires et séléctives provient du fait que dans le cas aléatoire, le choix du node immunisé est totalement aléatoire donc quasiment uniforme dans le graphe. Alors que dans le cas séléctif on choisit un voisin, les nodes ayant un degré superieur ont plus de chance d'être immunisés comme dit précédemment.
+
+## 4) Seuils épidémiques
+
+D'abord, on rappelle que dans le cas d'une évolution libre, le seuil épidémique était de 0.045, dans nos 2 situations d'immunisation, les seuils épidémiques passent respectivement à 0.073 pour le cas aléatoire et 0.204 pour le cas séléctif.
