@@ -22,7 +22,7 @@ Pour que le réseau soit connexe on observe qu'il faut que le degré moyen soit 
 
 ## 3) Distribution des degrés
 
-Un des meilleurs indicateurs pour comprendre un graphe est la distribution des degrés, cela permet d'avoir une idée de l'organisation des liens, nous pouvons utiliser plusieurs échelles pour étudier cela, voilà la distibution des degrés brute : 
+Un des meilleurs indicateurs pour comprendre un graphe est la distribution des degrés, cela permet d'avoir une idée de l'organisation des liens, nous pouvons utiliser plusieurs échelles pour étudier cela, voilà la distibution des degrés brute (les valeurs sont ici normalisées) : 
 
 
 ![Distribution des degrés](/src/main/ressources/Mesures/exp/degree_distribution_plot.png)
@@ -38,3 +38,12 @@ Nous observons que la distribution des degrés en échelle log-log ne forme pas 
 
 ## 4) Distribution des distances
 
+Un autre moyen pour comprendre les interactions dans un réseau est l'étude des distances entre les noeuds, en ce qui concerne la distance moyenne pour notre réseau de collaboration, elle est égale à 4.5771937 ce qui est relativement petit : l'information dans le réseau devrait se transmettre rapidement.
+La distance moyenne est largement inférieure à 6, cependant on observe dans les valeurs de distances que certaines sont supérieures à 6, bien qu'elles soient extrêmement minoritaires, cela suffit à dire que l'hypothèse des 6 degrés de séparation n'est pas vraie dans tous les cas.
+On a calculé la distance moyenne, comparons la maintenant à ln(N)/ln(k) = 6,700611819 : on peut remarquer plusieurs choses, d'abord la distance moyenne est faible, cela est signe d'un réseau fortement connecté, aussi, 4.58 a le même ordre de grandeur que 6.70 ce qui laisse penser que ce réseau est bien un réseau petit monde.
+
+Pour visualiser la distribution des distances, voici la courbe en échelle logarithmique la représentant : 
+
+![Distribution des distances en échelle logarithmique](/src/main/ressources/Mesures/exp/distances_distribution_log_plot.png)
+
+## 5) Graphe random
