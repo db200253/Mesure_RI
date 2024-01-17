@@ -311,9 +311,6 @@ public class Epidemie {
     /**
      * immune = alea -> seuil épidémique = 0.073
      * immune = select -> seuil épidémique = 0.204
-     * taux de propagation = 1/7 donc :
-     * seAlea < tp -> la maladie se propage
-     * seSelect > tp -> la maladie va disparaître
      */
     private static void getet() {
         
