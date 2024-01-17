@@ -42,8 +42,14 @@ Un autre moyen pour comprendre les interactions dans un réseau est l'étude des
 La distance moyenne est largement inférieure à 6, cependant on observe dans les valeurs de distances que certaines sont supérieures à 6, bien qu'elles soient extrêmement minoritaires, cela suffit à dire que l'hypothèse des 6 degrés de séparation n'est pas vraie dans tous les cas.
 On a calculé la distance moyenne, comparons la maintenant à ln(N)/ln(k) = 6,700611819 : on peut remarquer plusieurs choses, d'abord la distance moyenne est faible, cela est signe d'un réseau fortement connecté, aussi, 4.58 a le même ordre de grandeur que 6.70 ce qui laisse penser que ce réseau est bien un réseau petit monde.
 
-Pour visualiser la distribution des distances, voici la courbe en échelle logarithmique la représentant : 
+Pour visualiser la distribution des distances, voici la courbe la représentant : 
 
 ![Distribution des distances en échelle logarithmique](/src/main/ressources/Mesures/exp/distance_distribution_log_plot.png)
 
+Avec cette échelle linéaire, on observe que le pic global se situe quasiment au niveau de la distance moyenne, de plus on distingue une forme de cloche caractéristique (si l'on fait abstraction de certains pics locaux) d'une loi normale de moyenne égale à la distance moyenne et d'écart type égal à (degré moyen - distance moyenne). On peut donc émettre l'hypothèse que les distances suivent cette loi normale.
+
 ## 5) Graphe random
+
+Dans le graphe étudié, il y a 317 080 noeuds et 1 049 866 liens, le degré moyen est de 6.62208890914917 tandis que le coefficicient de clustering est de 0.6324308280637396.
+
+## 6) Graphe de Barabasi-Albert
