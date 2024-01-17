@@ -44,6 +44,6 @@ On a calculé la distance moyenne, comparons la maintenant à ln(N)/ln(k) = 6,70
 
 Pour visualiser la distribution des distances, voici la courbe en échelle logarithmique la représentant : 
 
-![Distribution des distances en échelle logarithmique](/src/main/ressources/Mesures/exp/distances_distribution_log_plot.png)
+![Distribution des distances en échelle logarithmique](/src/main/ressources/Mesures/exp/distance_distribution_log_plot.png)
 
 ## 5) Graphe random
