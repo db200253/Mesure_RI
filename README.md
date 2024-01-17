@@ -50,6 +50,17 @@ Avec cette échelle linéaire, on observe que le pic global se situe quasiment a
 
 ## 5) Graphe random
 
-Dans le graphe étudié, il y a 317 080 noeuds et 1 049 866 liens, le degré moyen est de 6.62208890914917 tandis que le coefficicient de clustering est de 0.6324308280637396.
+Dans le graphe étudié, il y a 317 087 noeuds et 1 049 017 liens, le degré moyen est de 6.6165876388549805 tandis que le coefficicient de clustering est de 2.2024673567699695E-5.
+Le réseau n'est pas connexe (on a vu qu'il fallait un degré moyen égal à 14 ou plus pour que ce soit le cas).
+
+En ce qui concerne la distribution des degrés, on a la courbe suivante : 
+
+![Distribution des degrés](/src/main/ressources/Mesures/random/degree_distribution_plot.png)
+
+
+Et voilà la distribution des degrés en échelle log-log : 
+
+
+![Distribution des degrés en échelle logarithmique](/src/main/ressources/Mesures/random/degree_distribution_log_plot.png)
 
 ## 6) Graphe de Barabasi-Albert
